@@ -10,20 +10,27 @@ namespace akanevrc.JewelShader
     [ExecuteInEditMode]
     public class CubemapBaker : MonoBehaviour
     {
-        public GameObject meshPrefab;
+        private static readonly string shaderName = "JewelShader/CubemapBaker";
+
         public GameObject cameraPrefab;
+        public GameObject meshPrefab;
         public int width = 256;
+        public string language = "en";
 
 #if UNITY_EDITOR
         public void Bake(string filePath)
         {
-            var destroyables = new Stack<Object>();
+            var activeObjects = UnactivateAll();
+
+            var destroyables = new Stack<UnityEngine.Object>();
             try
             {
                 var meshObj = Instantiate(this.meshPrefab);
+                meshObj.SetActive(true);
                 destroyables.Push(meshObj);
 
                 var cameraObj = Instantiate(this.cameraPrefab);
+                cameraObj.SetActive(true);
                 destroyables.Push(cameraObj);
 
                 var renderer = meshObj.GetComponent<Renderer>();
@@ -32,7 +39,7 @@ namespace akanevrc.JewelShader
 
                 InitCamera(camera);
 
-                var bakerMaterial = new Material(Shader.Find("JewelShader/CubemapBaker"));
+                var bakerMaterial = new Material(Shader.Find(CubemapBaker.shaderName));
                 destroyables.Push(bakerMaterial);
                 InitBakerMaterial(bakerMaterial, renderer);
 
@@ -47,7 +54,23 @@ namespace akanevrc.JewelShader
             finally
             {
                 foreach (var obj in destroyables) DestroyImmediate(obj);
+                ActivateAll(activeObjects);
             }
+        }
+
+        private IEnumerable<GameObject> UnactivateAll()
+        {
+            var objs =
+                Resources.FindObjectsOfTypeAll<GameObject>()
+                .Where(x => x != this && x.transform.parent == null && x.activeSelf)
+                .ToArray();
+            foreach (var obj in objs) obj.SetActive(false);
+            return objs;
+        }
+
+        private void ActivateAll(IEnumerable<GameObject> objs)
+        {
+            foreach (var obj in objs) obj.SetActive(true);
         }
 
         private void InitCamera(Camera camera)

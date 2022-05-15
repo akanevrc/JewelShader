@@ -1,4 +1,4 @@
-﻿Shader "JewelShader/CubemapBaker"
+Shader "JewelShader/CubemapBaker"
 {
     Properties
     {

@@ -1,4 +1,4 @@
-﻿Shader "JewelShader/Jewel"
+Shader "JewelShader/Jewel"
 {
     Properties
     {
