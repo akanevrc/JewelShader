@@ -93,15 +93,15 @@ namespace akanevrc.JewelShader.Editor
             }
         }
 
-        public SerializedProperty cameraPrefab;
-        public SerializedProperty meshPrefab;
-        public SerializedProperty width;
-        public SerializedProperty language;
+        private static string language = "en";
+
+        private SerializedProperty cameraPrefab;
+        private SerializedProperty meshPrefab;
+        private SerializedProperty width;
 
         private string errorMessage = "";
         private bool errorIsCritical = false;
 
-        [SerializeField]
         private bool hiddenConfigFoldout = false;
 
         private void OnEnable()
@@ -109,44 +109,42 @@ namespace akanevrc.JewelShader.Editor
             this.cameraPrefab = this.serializedObject.FindProperty(nameof(this.cameraPrefab));
             this.meshPrefab   = this.serializedObject.FindProperty(nameof(this.meshPrefab));
             this.width        = this.serializedObject.FindProperty(nameof(this.width));
-            this.language     = this.serializedObject.FindProperty(nameof(this.language));
         }
 
         public override void OnInspectorGUI()
         {
             var baker = (CubemapBaker)this.target;
-            var lang  = this.language.stringValue;
 
             this.serializedObject.Update();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField(I18n.GetCubemapBakerTitle(lang), EditorStyles.boldLabel);
-            if (GUILayout.Button(I18n.GetLanguageButtonLabel(lang))) ToggleLanguage();
+            EditorGUILayout.LabelField(I18n.GetCubemapBakerTitle(CubemapBakerEditor.language), EditorStyles.boldLabel);
+            if (GUILayout.Button(I18n.GetLanguageButtonLabel(CubemapBakerEditor.language))) ToggleLanguage();
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.Space();
 
-            EditorGUILayout.HelpBox(I18n.GetCubemapBakerDescription(lang), MessageType.Info);
+            EditorGUILayout.HelpBox(I18n.GetCubemapBakerDescription(CubemapBakerEditor.language), MessageType.Info);
             EditorGUILayout.Space();
 
-            EditorGUILayout.LabelField(I18n.GetMeshPrefabLabel(lang));
+            EditorGUILayout.LabelField(I18n.GetMeshPrefabLabel(CubemapBakerEditor.language));
             EditorGUILayout.PropertyField(this.meshPrefab, new GUIContent());
             EditorGUILayout.Space();
 
-            EditorGUILayout.LabelField(I18n.GetWidthLabel(lang));
+            EditorGUILayout.LabelField(I18n.GetWidthLabel(CubemapBakerEditor.language));
             EditorGUILayout.PropertyField(this.width, new GUIContent());
             EditorGUILayout.Space();
 
-            this.hiddenConfigFoldout = EditorGUILayout.Foldout(this.hiddenConfigFoldout, I18n.GetHiddenConfigFoldout(lang));
+            this.hiddenConfigFoldout = EditorGUILayout.Foldout(this.hiddenConfigFoldout, I18n.GetHiddenConfigFoldout(CubemapBakerEditor.language));
             if (this.hiddenConfigFoldout)
             {
                 EditorGUI.indentLevel++;
-                EditorGUILayout.LabelField(I18n.GetCameraPrefabLabel(lang));
+                EditorGUILayout.LabelField(I18n.GetCameraPrefabLabel(CubemapBakerEditor.language));
                 EditorGUILayout.PropertyField(this.cameraPrefab, new GUIContent());
                 EditorGUI.indentLevel--;
             }
             EditorGUILayout.Space();
 
-            if (GUILayout.Button(I18n.GetBakeButtonLabel(lang)))
+            if (GUILayout.Button(I18n.GetBakeButtonLabel(CubemapBakerEditor.language)))
             {
                 if (Validate())
                 {
@@ -154,10 +152,10 @@ namespace akanevrc.JewelShader.Editor
 
                     var path = EditorUtility.SaveFilePanelInProject
                     (
-                        I18n.GetSaveFilePanelTitle(lang),
+                        I18n.GetSaveFilePanelTitle(CubemapBakerEditor.language),
                         $"JewelShader_Cubemap_{meshObj?.name}.png",
                         "png",
-                        I18n.GetSaveFilePanelMessage(lang)
+                        I18n.GetSaveFilePanelMessage(CubemapBakerEditor.language)
                     );
 
                     if (!string.IsNullOrEmpty(path))
@@ -177,13 +175,13 @@ namespace akanevrc.JewelShader.Editor
 
         private void ToggleLanguage()
         {
-            if (this.language.stringValue == "en")
+            if (CubemapBakerEditor.language == "en")
             {
-                this.language.stringValue = "ja";
+                CubemapBakerEditor.language = "ja";
             }
             else
             {
-                this.language.stringValue = "en";
+                CubemapBakerEditor.language = "en";
             }
         }
 
@@ -192,21 +190,20 @@ namespace akanevrc.JewelShader.Editor
             var cameraObj = this.cameraPrefab.objectReferenceValue;
             var meshObj   = this.meshPrefab  .objectReferenceValue;
             var widthVal  = this.width.intValue;
-            var lang      = this.language.stringValue;
 
             if (cameraObj == null)
             {
-                this.errorMessage = I18n.GetNullMessageOfCameraPrefab(lang);
+                this.errorMessage = I18n.GetNullMessageOfCameraPrefab(CubemapBakerEditor.language);
                 return false;
             }
             else if (meshObj == null)
             {
-                this.errorMessage = I18n.GetNullMessageOfMeshPrefab(lang);
+                this.errorMessage = I18n.GetNullMessageOfMeshPrefab(CubemapBakerEditor.language);
                 return false;
             }
             else if (widthVal <= 0)
             {
-                this.errorMessage = I18n.GetOutOfRangeMessageOfWidth(lang);
+                this.errorMessage = I18n.GetOutOfRangeMessageOfWidth(CubemapBakerEditor.language);
                 return false;
             }
 

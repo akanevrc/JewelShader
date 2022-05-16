@@ -15,7 +15,6 @@ namespace akanevrc.JewelShader
         public GameObject cameraPrefab;
         public GameObject meshPrefab;
         public int width = 256;
-        public string language = "en";
 
 #if UNITY_EDITOR
         public void Bake(string filePath)

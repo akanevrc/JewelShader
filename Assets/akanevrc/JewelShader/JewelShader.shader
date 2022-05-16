@@ -14,9 +14,9 @@ Shader "JewelShader/Jewel"
         _ColorAttenuationB("Color Attenuation B", Range(0, 1)) = 0
 
         [KeywordEnum(None, RGB)] _Spectroscopy("Spectroscopy", Float) = 0
-        _SpectrumRefractiveR("_Spectrum Refractive R", Range(1, 2)) = 1
-        _SpectrumRefractiveG("_Spectrum Refractive G", Range(1, 2)) = 1.04
-        _SpectrumRefractiveB("_Spectrum Refractive B", Range(1, 2)) = 1.08
+        _SpectrumRefractiveR("Spectrum Refractive R", Range(1, 2)) = 1
+        _SpectrumRefractiveG("Spectrum Refractive G", Range(1, 2)) = 1.04
+        _SpectrumRefractiveB("Spectrum Refractive B", Range(1, 2)) = 1.08
 
         [HideInInspector] _Centroid       ("Centroid Position", Vector) = (0, 0, 0, 1)
         [HideInInspector] _ReflectionCount("Reflection Count" , Int   ) = 2
@@ -231,5 +231,6 @@ Shader "JewelShader/Jewel"
             ENDCG
         }
     }
-    Fallback "Legacy Shaders/Transparent/Diffuse"
+    CustomEditor "akanevrc.JewelShader.Editor.JewelShaderGUI"
+    Fallback     "Legacy Shaders/Transparent/Diffuse"
 }
