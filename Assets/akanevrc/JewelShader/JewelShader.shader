@@ -157,7 +157,7 @@ Shader "akanevrc_JewelShader/Jewel"
                 len    = len + distance(posRef, posIn);
 
                 float4 col = length(dirOut) == 0 ? float4(0, 0, 0, 0) : probeColor(dirOut, posIn);
-                col = float4(col.xyz * col.w + light(dirOut, lightDir).xyz, 1);
+                col = float4(col.xyz * col.w * (1 + light(dirOut, lightDir).xyz), 1);
                 col = float4(col.xyz * float3(exp(-len * _ColorAttenuationR), exp(-len * _ColorAttenuationG), exp(-len * _ColorAttenuationB)), 1);
 
                 float tmpfr = fr;
@@ -207,7 +207,7 @@ Shader "akanevrc_JewelShader/Jewel"
                 float3 dirOut = reflect(-i.viewDir, i.normal);
                 float4 col    = probeColor(dirOut, posIn);
                 col = float4(col.xyz * (1 - fr), col.w);
-                col = float4(col.xyz * col.w + light(dirOut, lightDir).xyz * _LightReflection, 1);
+                col = float4(col.xyz * col.w * (1 + light(dirOut, lightDir).xyz * _LightReflection), 1);
 
 #ifdef _SPECTROSCOPY_NONE
                 float4 w = iterateAll(posIn, dirIn, _Refractive, i.center, lightDir, fr);
