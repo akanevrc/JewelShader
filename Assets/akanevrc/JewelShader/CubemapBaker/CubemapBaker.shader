@@ -1,4 +1,4 @@
-Shader "JewelShader/CubemapBaker"
+Shader "akanevrc_JewelShader/CubemapBaker"
 {
     Properties
     {

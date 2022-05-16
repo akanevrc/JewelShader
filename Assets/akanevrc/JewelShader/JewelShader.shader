@@ -1,4 +1,4 @@
-Shader "JewelShader/Jewel"
+Shader "akanevrc_JewelShader/Jewel"
 {
     Properties
     {

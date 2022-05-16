@@ -37,8 +37,8 @@ namespace akanevrc.JewelShader.Editor
                 return GetText
                 (
                     language,
-                    "Use this GameObject to bake a Cubemap for JewelShader.",
-                    "このGameObjectは、宝石シェーダー用キューブマップをベイクするために使用します。"
+                    "Use this GameObject to bake a Cubemap for akanevrc_JewelShader.",
+                    "このGameObjectは、茜式宝石シェーダー用キューブマップをベイクするために使用します。"
                 );
             }
 

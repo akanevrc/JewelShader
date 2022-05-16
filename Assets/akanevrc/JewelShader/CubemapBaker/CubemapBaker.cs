@@ -10,7 +10,7 @@ namespace akanevrc.JewelShader
     [ExecuteInEditMode]
     public class CubemapBaker : MonoBehaviour
     {
-        private static readonly string shaderName = "JewelShader/CubemapBaker";
+        private static readonly string shaderName = "akanevrc_JewelShader/CubemapBaker";
 
         public GameObject cameraPrefab;
         public GameObject meshPrefab;

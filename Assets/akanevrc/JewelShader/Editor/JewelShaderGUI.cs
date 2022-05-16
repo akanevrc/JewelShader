@@ -34,7 +34,7 @@ namespace akanevrc.JewelShader.Editor
 
             public static string GetJewelShaderTitle(string language)
             {
-                return GetText(language, "Jewel Shader", "宝石シェーダー (Jewel Shader)");
+                return GetText(language, "akanevrc_JewelShader", "茜式宝石シェーダー (akanevrc_JewelShader)");
             }
 
             public static string GetNormalCubeLabel(string language)
