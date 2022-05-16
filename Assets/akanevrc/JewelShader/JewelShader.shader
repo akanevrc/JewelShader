@@ -3,7 +3,7 @@ Shader "akanevrc_JewelShader/Jewel"
     Properties
     {
         _NormalCube          ("Normal Cubemap"  , Cube            ) = "bump" {}
-        _Refractive          ("Refractive Index", Range(1, 5)     ) = 1
+        _Refractive          ("Refractive Index", Range(1, 5)     ) = 1.5
         _LightDir            ("Light Direction" , Vector          ) = (0, 1, 0, 1)
         _LightPower          ("Light Power"     , Range(0.01, 100)) = 10
         _LightReflection     ("Light Reflection", Range(0, 1)     ) = 0.01
