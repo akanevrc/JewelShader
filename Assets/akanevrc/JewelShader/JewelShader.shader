@@ -130,7 +130,7 @@ Shader "akanevrc_JewelShader/Jewel"
                 float  sinIn   = sqrt(saturate(1 - pow(cosView, 2))) * invRefractive;
                 float  cosIn   = sqrt(saturate(1 - pow(sinIn  , 2)));
                 float3 dir     = (cosView * normal + dirIn) * invRefractive - cosIn * normal;
-                return length(dir) == 0 ? float3(0, 0, 0) : normalize(dir);
+                return length(dir) < 0.0001 ? float3(0, 0, 0) : normalize(dir);
             }
 
             float4 iterate
@@ -157,13 +157,13 @@ Shader "akanevrc_JewelShader/Jewel"
                 dirRef = reflect(dirIn, n);
                 len    = len + distance(posRef, posIn);
 
-                float4 col = length(dirOut) == 0 ? float4(0, 0, 0, 0) : probeColor(dirOut, posIn);
+                float4 col = length(dirOut) == 0 ? float4(0, 0, 0, 1) : probeColor(dirOut, posIn);
                 col = float4(col.xyz * col.w * (1 + light(dirOut, lightDir).xyz), 1);
                 col = float4(col.xyz * float3(exp(-len * _ColorAttenuationR), exp(-len * _ColorAttenuationG), exp(-len * _ColorAttenuationB)), 1);
 
                 float tmpfr = fr;
                 fr = fr * fresnel(dirIn, n, 1 / refractive);
-                return float4(col.xyz * (isFinal ? tmpfr : tmpfr - fr), col.w);
+                return float4(col.xyz * (isFinal ? tmpfr : tmpfr - fr < 0.001 ? 0 : tmpfr - fr), col.w);
             }
 
             float4 iterateAll
