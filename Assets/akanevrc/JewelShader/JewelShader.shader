@@ -82,7 +82,7 @@ Shader "akanevrc_JewelShader/Jewel"
                 o.normal   = UnityObjectToWorldNormal(v.normal);
                 o.worldPos = mul(unity_ObjectToWorld, float4(v.vertex.xyz / v.vertex.w, 1));
                 o.viewDir  = normalize(UnityWorldSpaceViewDir(o.worldPos.xyz));
-                o.center   = mul(unity_ObjectToWorld, _Centroid);
+                o.center   = mul(unity_ObjectToWorld, float4(_Centroid.xyz / _Centroid.w, 1));
                 UNITY_TRANSFER_FOG(o, o.vertex);
                 return o;
             }
@@ -126,10 +126,11 @@ Shader "akanevrc_JewelShader/Jewel"
 
             float3 refractDir(float3 dirIn, float3 normal, float invRefractive)
             {
-                float cosView = dot(-dirIn, normal);
-                float sinIn   = sqrt(saturate(1 - pow(cosView, 2))) * invRefractive;
-                float cosIn   = sqrt(saturate(1 - pow(sinIn  , 2)));
-                return normalize((cosView * normal + dirIn) * invRefractive - cosIn * normal);
+                float  cosView = dot(-dirIn, normal);
+                float  sinIn   = sqrt(saturate(1 - pow(cosView, 2))) * invRefractive;
+                float  cosIn   = sqrt(saturate(1 - pow(sinIn  , 2)));
+                float3 dir     = (cosView * normal + dirIn) * invRefractive - cosIn * normal;
+                return length(dir) == 0 ? float3(0, 0, 0) : normalize(dir);
             }
 
             float4 iterate

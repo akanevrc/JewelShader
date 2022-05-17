@@ -358,26 +358,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7303871480374006266, guid: 0e453b58a8ba7ba4686ad63d86d4cc33,
-        type: 3}
-      propertyPath: centroid.x
-      value: -137.50056
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303871480374006266, guid: 0e453b58a8ba7ba4686ad63d86d4cc33,
-        type: 3}
-      propertyPath: centroid.y
-      value: -0.3895041
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303871480374006266, guid: 0e453b58a8ba7ba4686ad63d86d4cc33,
-        type: 3}
-      propertyPath: centroid.z
-      value: -8.54397
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303871480374006266, guid: 0e453b58a8ba7ba4686ad63d86d4cc33,
-        type: 3}
-      propertyPath: meshPrefab
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7303871480374006267, guid: 0e453b58a8ba7ba4686ad63d86d4cc33,
         type: 3}
       propertyPath: m_Name
