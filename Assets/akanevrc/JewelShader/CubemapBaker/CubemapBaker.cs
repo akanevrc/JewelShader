@@ -79,14 +79,16 @@ namespace akanevrc.JewelShader
 
         private Vector3 GetCentroid(Mesh mesh)
         {
-            var centroid = Vector3.zero;
-            var surface  = 0.0F;
+            var triangles = mesh.triangles;
+            var vertices  = mesh.vertices;
+            var centroid  = Vector3.zero;
+            var surface   = 0.0F;
 
-            for (var i = 0; i < mesh.triangles.Length; i += 3)
+            for (var i = 0; i < triangles.Length; i += 3)
             {
-                var v0 = mesh.vertices[mesh.triangles[i]];
-                var v1 = mesh.vertices[mesh.triangles[i + 1]];
-                var v2 = mesh.vertices[mesh.triangles[i + 2]];
+                var v0 = vertices[triangles[i]];
+                var v1 = vertices[triangles[i + 1]];
+                var v2 = vertices[triangles[i + 2]];
                 var s  = Vector3.Cross(v1 - v0, v2 - v0).magnitude;
                 centroid += (v0 + v1 + v2) * s;
                 surface  += s;
