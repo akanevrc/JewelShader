@@ -112,6 +112,16 @@ namespace akanevrc.JewelShader.Editor
             {
                 return GetText(language, "Width must be 1 or above", "サイズは1以上にしてください");
             }
+
+            public static string GetBakeCanceledLog(string language)
+            {
+                return GetText(language, "Bake canceled", "ベイクがキャンセルされました");
+            }
+
+            public static string GetBakeSucceededLog(string language)
+            {
+                return GetText(language, "Bake succeeded", "ベイクが完了しました");
+            }
         }
 
         private static string language = "en";
@@ -192,7 +202,7 @@ namespace akanevrc.JewelShader.Editor
 
                     if (string.IsNullOrEmpty(cubemapPath))
                     {
-                        Debug.Log("Bake canceled");
+                        Debug.Log(I18n.GetBakeCanceledLog(CubemapBakerEditor.language));
                     }
                     else
                     {
@@ -207,12 +217,12 @@ namespace akanevrc.JewelShader.Editor
 
                         if (string.IsNullOrEmpty(materialPath))
                         {
-                            Debug.Log("Bake canceled");
+                            Debug.Log(I18n.GetBakeCanceledLog(CubemapBakerEditor.language));
                         }
                         else
                         {
                             baker.Bake(cubemapPath, materialPath);
-                            Debug.Log("Bake succeeded");
+                            Debug.Log(I18n.GetBakeSucceededLog(CubemapBakerEditor.language));
                         }
                     }
                 }
