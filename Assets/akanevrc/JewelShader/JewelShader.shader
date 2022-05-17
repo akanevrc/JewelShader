@@ -4,7 +4,7 @@ Shader "akanevrc_JewelShader/Jewel"
     {
         _NormalCube          ("Normal Cubemap"   , Cube            ) = "bump" {}
         _Centroid            ("Centroid Position", Vector          ) = (0, 0, 0, 1)
-        _Refractive          ("Refractive Index" , Range(1, 5)     ) = 1.5
+        _Refractive          ("Refractive Index" , Range(1, 5)     ) = 2.4
         _LightDir            ("Light Direction"  , Vector          ) = (0, 1, 0, 1)
         _LightPower          ("Light Power"      , Range(0.01, 100)) = 10
         _LightReflection     ("Light Reflection" , Range(0, 1)     ) = 0.01
@@ -14,7 +14,7 @@ Shader "akanevrc_JewelShader/Jewel"
         _ColorAttenuationG("Color Attenuation G", Range(0, 1)) = 0
         _ColorAttenuationB("Color Attenuation B", Range(0, 1)) = 0
 
-        [KeywordEnum(None, RGB)] _Spectroscopy("Spectroscopy", Float) = 0
+        [KeywordEnum(None, RGB)] _Spectroscopy("Spectroscopy", Float) = 1
         _SpectrumRefractiveR("Spectrum Refractive R", Range(1, 2)) = 1
         _SpectrumRefractiveG("Spectrum Refractive G", Range(1, 2)) = 1.04
         _SpectrumRefractiveB("Spectrum Refractive B", Range(1, 2)) = 1.08
