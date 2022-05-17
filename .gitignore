@@ -78,3 +78,14 @@ crashlytics-build.properties
 # End of https://www.toptal.com/developers/gitignore/api/unity
 
 /[Aa]ssets/akanevrc/JewelShaderTest/
+/[Aa]ssets/akanevrc/JewelShaderTest.meta
+/[Aa]ssets/Crystal Shader/
+/[Aa]ssets/Crystal Shader.meta
+/[Aa]ssets/lilToon/
+/[Aa]ssets/lilToon.meta
+/[Aa]ssets/lilToonSetting/
+/[Aa]ssets/lilToonSetting.meta
+/[Aa]ssets/Unlit_WF_ShaderSuite/
+/[Aa]ssets/Unlit_WF_ShaderSuite.meta
+/[Aa]ssets/csc.rsp
+/[Aa]ssets/csc.rsp.meta
