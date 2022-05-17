@@ -42,6 +42,11 @@ namespace akanevrc.JewelShader.Editor
                 return GetText(language, "Normal Cubemap", "法線キューブマップ");
             }
 
+            public static string GetCentroidLabel(string language)
+            {
+                return GetText(language, "Centroid Position", "中心座標");
+            }
+
             public static string GetRefractiveLabel(string language)
             {
                 return GetText(language, "Refractive Index", "屈折率");
@@ -106,6 +111,7 @@ namespace akanevrc.JewelShader.Editor
         private static string language = "en";
 
         private MaterialProperty _NormalCube;
+        private MaterialProperty _Centroid;
         private MaterialProperty _Refractive;
         private MaterialProperty _LightDir;
         private MaterialProperty _LightPower;
@@ -118,7 +124,6 @@ namespace akanevrc.JewelShader.Editor
         private MaterialProperty _SpectrumRefractiveR;
         private MaterialProperty _SpectrumRefractiveG;
         private MaterialProperty _SpectrumRefractiveB;
-        private MaterialProperty _Centroid;
         private MaterialProperty _ReflectionCount;
         private MaterialProperty _MainTex;
         private MaterialProperty _Color;
@@ -126,6 +131,7 @@ namespace akanevrc.JewelShader.Editor
         private void FindProperties(MaterialProperty[] props)
         {
             _NormalCube          = ShaderGUI.FindProperty("_NormalCube"         , props);
+            _Centroid            = ShaderGUI.FindProperty("_Centroid"           , props);
             _Refractive          = ShaderGUI.FindProperty("_Refractive"         , props);
             _LightDir            = ShaderGUI.FindProperty("_LightDir"           , props);
             _LightPower          = ShaderGUI.FindProperty("_LightPower"         , props);
@@ -138,7 +144,6 @@ namespace akanevrc.JewelShader.Editor
             _SpectrumRefractiveR = ShaderGUI.FindProperty("_SpectrumRefractiveR", props);
             _SpectrumRefractiveG = ShaderGUI.FindProperty("_SpectrumRefractiveG", props);
             _SpectrumRefractiveB = ShaderGUI.FindProperty("_SpectrumRefractiveB", props);
-            _Centroid            = ShaderGUI.FindProperty("_Centroid"           , props);
             _ReflectionCount     = ShaderGUI.FindProperty("_ReflectionCount"    , props);
             _MainTex             = ShaderGUI.FindProperty("_MainTex"            , props);
             _Color               = ShaderGUI.FindProperty("_Color"              , props);
@@ -158,6 +163,7 @@ namespace akanevrc.JewelShader.Editor
             EditorGUI.BeginChangeCheck();
 
             materialEditor.TextureProperty(_NormalCube, I18n.GetNormalCubeLabel(JewelShaderGUI.language));
+            materialEditor.VectorProperty (_Centroid  , I18n.GetCentroidLabel  (JewelShaderGUI.language));
             EditorGUILayout.Space();
 
             materialEditor.RangeProperty(_Refractive, I18n.GetRefractiveLabel(JewelShaderGUI.language));

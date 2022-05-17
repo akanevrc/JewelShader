@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -57,6 +58,16 @@ namespace akanevrc.JewelShader.Editor
                 return GetText(language, "Target mesh Prefab/GameObject", "処理対象のメッシュを含むPrefab/GameObject");
             }
 
+            public static string GetManualCentroidLabel(string language)
+            {
+                return GetText(language, "Specify centroid manually", "中心座標を手動で指定");
+            }
+
+            public static string GetCentroidLabel(string language)
+            {
+                return GetText(language, "Centroid position", "中心座標");
+            }
+
             public static string GetWidthLabel(string language)
             {
                 return GetText(language, "Baked cubemap width", "ベイクされるキューブマップのサイズ");
@@ -67,14 +78,24 @@ namespace akanevrc.JewelShader.Editor
                 return GetText(language, "Bake", "ベイク");
             }
 
-            public static string GetSaveFilePanelTitle(string language)
+            public static string GetSaveCubemapPanelTitle(string language)
             {
                 return GetText(language, "Save cubemap texture", "キューブマップテクスチャの保存");
             }
 
-            public static string GetSaveFilePanelMessage(string language)
+            public static string GetSaveCubemapPanelMessage(string language)
             {
                 return GetText(language, "Enter a name of new cubemap texture file.", "キューブマップテクスチャファイルの名前を入力");
+            }
+
+            public static string GetSaveMaterialPanelTitle(string language)
+            {
+                return GetText(language, "Save material", "マテリアルの保存");
+            }
+
+            public static string GetSaveMaterialPanelMessage(string language)
+            {
+                return GetText(language, "Enter a name of new material file.", "マテリアルファイルの名前を入力");
             }
 
             public static string GetNullMessageOfCameraPrefab(string language)
@@ -97,6 +118,8 @@ namespace akanevrc.JewelShader.Editor
 
         private SerializedProperty cameraPrefab;
         private SerializedProperty meshPrefab;
+        private SerializedProperty manualCentroid;
+        private SerializedProperty centroid;
         private SerializedProperty width;
 
         private string errorMessage = "";
@@ -106,9 +129,11 @@ namespace akanevrc.JewelShader.Editor
 
         private void OnEnable()
         {
-            this.cameraPrefab = this.serializedObject.FindProperty(nameof(this.cameraPrefab));
-            this.meshPrefab   = this.serializedObject.FindProperty(nameof(this.meshPrefab));
-            this.width        = this.serializedObject.FindProperty(nameof(this.width));
+            this.cameraPrefab   = this.serializedObject.FindProperty(nameof(this.cameraPrefab));
+            this.meshPrefab     = this.serializedObject.FindProperty(nameof(this.meshPrefab));
+            this.manualCentroid = this.serializedObject.FindProperty(nameof(this.manualCentroid));
+            this.centroid       = this.serializedObject.FindProperty(nameof(this.centroid));
+            this.width          = this.serializedObject.FindProperty(nameof(this.width));
         }
 
         public override void OnInspectorGUI()
@@ -128,6 +153,13 @@ namespace akanevrc.JewelShader.Editor
 
             EditorGUILayout.LabelField(I18n.GetMeshPrefabLabel(CubemapBakerEditor.language));
             EditorGUILayout.PropertyField(this.meshPrefab, new GUIContent());
+            EditorGUILayout.Space();
+
+            EditorGUILayout.PropertyField(this.manualCentroid, new GUIContent(I18n.GetManualCentroidLabel(CubemapBakerEditor.language)));
+            EditorGUI.BeginDisabledGroup(!this.manualCentroid.boolValue);
+            EditorGUILayout.LabelField(I18n.GetCentroidLabel(CubemapBakerEditor.language));
+            EditorGUILayout.PropertyField(this.centroid, new GUIContent());
+            EditorGUI.EndDisabledGroup();
             EditorGUILayout.Space();
 
             EditorGUILayout.LabelField(I18n.GetWidthLabel(CubemapBakerEditor.language));
@@ -150,18 +182,38 @@ namespace akanevrc.JewelShader.Editor
                 {
                     var meshObj = (GameObject)this.meshPrefab.objectReferenceValue;
 
-                    var path = EditorUtility.SaveFilePanelInProject
+                    var cubemapPath = EditorUtility.SaveFilePanelInProject
                     (
-                        I18n.GetSaveFilePanelTitle(CubemapBakerEditor.language),
+                        I18n.GetSaveCubemapPanelTitle(CubemapBakerEditor.language),
                         $"JewelShader_Cubemap_{meshObj?.name}.png",
                         "png",
-                        I18n.GetSaveFilePanelMessage(CubemapBakerEditor.language)
+                        I18n.GetSaveCubemapPanelMessage(CubemapBakerEditor.language)
                     );
 
-                    if (!string.IsNullOrEmpty(path))
+                    if (string.IsNullOrEmpty(cubemapPath))
                     {
-                        baker.Bake(path);
-                        Debug.Log("Bake succeeded");
+                        Debug.Log("Bake canceled");
+                    }
+                    else
+                    {
+                        var materialPath = EditorUtility.SaveFilePanelInProject
+                        (
+                            I18n.GetSaveMaterialPanelTitle(CubemapBakerEditor.language),
+                            $"JewelShader_Material_{meshObj?.name}.mat",
+                            "mat",
+                            I18n.GetSaveMaterialPanelMessage(CubemapBakerEditor.language),
+                            Path.GetDirectoryName(cubemapPath)
+                        );
+
+                        if (string.IsNullOrEmpty(materialPath))
+                        {
+                            Debug.Log("Bake canceled");
+                        }
+                        else
+                        {
+                            baker.Bake(cubemapPath, materialPath);
+                            Debug.Log("Bake succeeded");
+                        }
                     }
                 }
             }

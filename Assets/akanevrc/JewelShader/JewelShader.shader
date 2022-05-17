@@ -2,12 +2,13 @@ Shader "akanevrc_JewelShader/Jewel"
 {
     Properties
     {
-        _NormalCube          ("Normal Cubemap"  , Cube            ) = "bump" {}
-        _Refractive          ("Refractive Index", Range(1, 5)     ) = 1.5
-        _LightDir            ("Light Direction" , Vector          ) = (0, 1, 0, 1)
-        _LightPower          ("Light Power"     , Range(0.01, 100)) = 10
-        _LightReflection     ("Light Reflection", Range(0, 1)     ) = 0.01
-        [HDR] _LightIntensity("Light Color"     , Color           ) = (20, 20, 20, 1)
+        _NormalCube          ("Normal Cubemap"   , Cube            ) = "bump" {}
+        _Centroid            ("Centroid Position", Vector          ) = (0, 0, 0, 1)
+        _Refractive          ("Refractive Index" , Range(1, 5)     ) = 1.5
+        _LightDir            ("Light Direction"  , Vector          ) = (0, 1, 0, 1)
+        _LightPower          ("Light Power"      , Range(0.01, 100)) = 10
+        _LightReflection     ("Light Reflection" , Range(0, 1)     ) = 0.01
+        [HDR] _LightIntensity("Light Color"      , Color           ) = (20, 20, 20, 1)
 
         _ColorAttenuationR("Color Attenuation R", Range(0, 1)) = 0
         _ColorAttenuationG("Color Attenuation G", Range(0, 1)) = 0
@@ -18,8 +19,7 @@ Shader "akanevrc_JewelShader/Jewel"
         _SpectrumRefractiveG("Spectrum Refractive G", Range(1, 2)) = 1.04
         _SpectrumRefractiveB("Spectrum Refractive B", Range(1, 2)) = 1.08
 
-        [HideInInspector] _Centroid       ("Centroid Position", Vector) = (0, 0, 0, 1)
-        [HideInInspector] _ReflectionCount("Reflection Count" , Int   ) = 2
+        [HideInInspector] _ReflectionCount("Reflection Count", Int) = 2
 
         [HideInInspector] _MainTex("Main Texture", 2D   ) = "white" {}
         [HideInInspector] _Color  ("Color"       , Color) = (1, 1, 1, 0.5)
@@ -58,6 +58,7 @@ Shader "akanevrc_JewelShader/Jewel"
             };
 
             UNITY_DECLARE_TEXCUBE(_NormalCube);
+            float4 _Centroid;
             float  _Refractive;
             float4 _LightDir;
             float  _LightPower;
@@ -69,7 +70,6 @@ Shader "akanevrc_JewelShader/Jewel"
             float  _SpectrumRefractiveR;
             float  _SpectrumRefractiveG;
             float  _SpectrumRefractiveB;
-            float4 _Centroid;
             int    _ReflectionCount;
 
             v2f vert(appdata v)
