@@ -11,6 +11,9 @@ The meshes that is applied with this shader correctly, there are conditions.
 1. Being a convex hull
 2. Including the origin (0, 0, 0)
 
+Also, since this shader refers to the Reflection Probe (or Skybox),
+objects that do not appear in the Reflection Probe will not be transparent.
+
 
 [ Sale ]
 URL : https://akanezoranomukou.booth.pm/

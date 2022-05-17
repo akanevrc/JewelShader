@@ -11,6 +11,9 @@ VRChatのWindows版での使用に対応しています。
 1. 凸包であること
 2. 原点(0, 0, 0)を内包すること
 
+また、本シェーダーはReflection Probe（またはSkybox）を参照するため、
+Reflection Probeに映らないオブジェクトは透過されません。
+
 
 【販売】
 URL：https://akanezoranomukou.booth.pm/
