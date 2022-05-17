@@ -161,6 +161,7 @@ namespace akanevrc.JewelShader.Editor
                     if (!string.IsNullOrEmpty(path))
                     {
                         baker.Bake(path);
+                        Debug.Log("Bake succeeded");
                     }
                 }
             }
