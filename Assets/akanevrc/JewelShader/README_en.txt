@@ -30,8 +30,18 @@ VRChat Windows Edition
 See the included "TermsOfUse_en.pdf" or "TermsOfUse_ja.pdf".
 By purchasing or use this product, you are deemed to have agreed to these terms.
 
+
+[ Abstraction ]
+akanevrc_JewelShader is a shader that reproduces the refraction and reflection of transparent substances.
+This shader is fast because draw in 1 pass without using rays by baking normal data to a cubemap.
+Both hard edge and soft edge supported.
+The color of the object can be specified.
+It is possible to reproduce a prism-like spectrum.
+It gives a photorealistic look and is better suited for larger objects than smaller ones.
+
+
 [ Usage ]
-It is necessary for akanevrc_JewelShader works correctly,
+It is necessary for this shader works correctly,
 required to bake normals into a cubemap and set it to a material.
 The way to do it is like this...
 
@@ -99,6 +109,7 @@ reflects off the surface of the object.
 「Light Color (Intensity)」（光源の色（強さ））
 Specify the intensity of light source.
 This is HDR color.
+Note that this light source is bright in the bright place and dark in the dark place.
 
 「Color Attenuation R」（赤の減衰）
 「Color Attenuation G」（緑の減衰）
