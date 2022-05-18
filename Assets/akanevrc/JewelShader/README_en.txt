@@ -106,6 +106,7 @@ This item is automatically set by CubemapBaker when baking.
 
 「Refractive Index」（屈折率）
 Specify refractive index of the object.
+As a guide, 1.3 is ice, 1.5 is glass, 1.7 is sapphire, and 2.4 is diamond.
 
 「Light Direction」（光源の向き）
 Specify the direction of auxiliary light source (directional light).
