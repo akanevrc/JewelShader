@@ -4,12 +4,12 @@
 This product is a shader of Unity built-in rendering pipeline.
 Not contains 3D models.
 Supports to use in VRChat for Windows.
+(There is no problem even if you use it for purposes other than VRChat)
 
 
 [ Caution! ]
 The meshes that is applied with this shader correctly, there are conditions.
-1. Being a convex hull
-2. Including the origin (0, 0, 0)
+The condition: The mesh is continuous in a polar coordinate system with the specified centroid position as the origin
 
 Also, since this shader refers to the Reflection Probe (or Skybox),
 objects that do not appear in the Reflection Probe will not be transparent.
@@ -25,7 +25,7 @@ Seller : 茜 (akanevrc)
 [ Verification Environment ]
 Unity 2019.4.31f1
 
-[ Mandatory Requirements ]
+[ Requirements for VRChat ]
 VRChat Windows Edition
 (Not for Oculus/Meta Quest Edition! Please be careful!)
 
@@ -36,7 +36,7 @@ By purchasing or use this product, you are deemed to have agreed to these terms.
 
 [ Abstraction ]
 akanevrc_JewelShader is a shader that reproduces the refraction and reflection of transparent substances.
-This shader is fast because draw in 1 pass without using rays by baking normal data to a cubemap.
+This shader is very fast because draw in 1 pass without using rays by baking normal data to a cubemap.
 Both hard edge and soft edge supported.
 The color of the object can be specified.
 It is possible to reproduce a prism-like spectrum.
@@ -45,7 +45,7 @@ It gives a photorealistic look and is better suited for larger objects than smal
 
 [ Usage ]
 It is necessary for this shader works correctly,
-required to bake normals into a cubemap and set it to a material.
+required to bake normals into a cubemap and apply the generated material to the target mesh.
 The way to do it is like this...
 
 1. Place in the scene the prefab that will be in following path.
@@ -53,11 +53,9 @@ The way to do it is like this...
 2. Set a Prefab/GameObject that contains the mesh
   to which the shader will be applied in the input field below.
   「Target mesh Prefab/GameObject」（処理対象のメッシュを含むPrefab/GameObject）
-3. Click the 「Bake」（ベイク） button, and specify saving path of cubemap,
-  then cubemap will be saved as PNG file.
-4. Create a new material, and set shader "akanevrc_JewelShader/Jewel".
-5. Set the cubemap to 「Normal Cubemap」（法線キューブマップ）.
-6. Set the material to the mesh.
+3. Click the 「Bake」（ベイク） button, and specify saving path of cubemap and material,
+  then the PNG format cubemap and the material to which the cubemap is applied are saved.
+4. Set the material to the mesh.
 
 
 [ CubemapBaker ]
@@ -73,8 +71,14 @@ The normals of specified mesh will be baked into cubemap.
 Basically, specify the mesh that will be applied with the material.
 As above, this mesh should be matching the conditions.
 (However, can be applied in the fact, errors will not be occured even if condition not suitable.)
-1. Being a convex hull
-2. Including the origin (0, 0, 0)
+The condition: The mesh is continuous in a polar coordinate system with the specified centroid position as the origin
+
+「Specify centroid manually」（中心座標を手動で指定）
+When unchecked, the centroid coordinates are automatically calculated from the mesh information.
+When checked, the centroid coordinates can be specified to any value.
+
+「Centroid position」（中心座標）
+Specify the centroid coordinates If "Specify centroid manually" checked.
 
 「Baked cubemap width」（ベイクされるキューブマップのサイズ）
 Specify the width of one face of the cubemap.
@@ -94,6 +98,11 @@ Configure items like following...
 
 「Normal Cubemap」（法線キューブマップ）
 Specify cubemap baked with CubemapBaker.
+This item is automatically set by CubemapBaker when baking.
+
+「Centroid Position」（中心座標）
+The center coordinates of the normal baking.
+This item is automatically set by CubemapBaker when baking.
 
 「Refractive Index」（屈折率）
 Specify refractive index of the object.
