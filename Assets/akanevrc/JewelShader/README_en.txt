@@ -30,8 +30,9 @@ VRChat Windows Edition
 (Not for Oculus/Meta Quest Edition! Please be careful!)
 
 [ Terms of Use ]
-See the included "TermsOfUse_en.pdf" or "TermsOfUse_ja.pdf".
+See the included "TermsOfUse_○○License_en.pdf" or "TermsOfUse_○○License_ja.pdf".
 By purchasing or use this product, you are deemed to have agreed to these terms.
+See also included "README_about_licenses_en.txt" or "README_about_licenses_ja.txt" for a brief license description.
 
 
 [ Abstraction ]

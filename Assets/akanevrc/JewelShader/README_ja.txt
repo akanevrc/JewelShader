@@ -30,8 +30,9 @@ Windows版 VRChat
 （Oculus/Meta Quest版は非対応です！ ご注意ください！）
 
 【利用規約】
-同梱の「TermsOfUse_ja.pdf」または「TermsOfUse_en.pdf」を参照してください。
+同梱の「TermsOfUse_○○License_ja.pdf」または「TermsOfUse_○○License_en.pdf」を参照してください。
 本製品の購入または使用により、本規約に同意したものとみなします。
+ライセンスに関する簡易的な説明は、「README_about_licenses_ja.txt」または「README_about_licenses_en.txt」を参照してください。
 
 
 【概要】
