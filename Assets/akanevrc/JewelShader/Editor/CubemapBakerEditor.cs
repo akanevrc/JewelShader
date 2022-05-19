@@ -10,9 +10,11 @@ namespace akanevrc.JewelShader.Editor
     {
         private static class I18n
         {
-            private static string GetText(string language, string enText, string jaText)
+            public static string language = "en";
+
+            private static string GetText(string enText, string jaText)
             {
-                switch (language)
+                switch (I18n.language)
                 {
                     case "en":
                         return enText;
@@ -23,108 +25,105 @@ namespace akanevrc.JewelShader.Editor
                 }
             }
 
-            public static string GetLanguageButtonLabel(string language)
+            public static string GetLanguageButtonLabel()
             {
-                return GetText(language, "日本語", "English");
+                return GetText("日本語", "English");
             }
 
-            public static string GetCubemapBakerTitle(string language)
+            public static string GetCubemapBakerTitle()
             {
-                return GetText(language, "Cubemap Baker", "キューブマップベイカー (Cubemap Baker)");
+                return GetText("Cubemap Baker", "キューブマップベイカー (Cubemap Baker)");
             }
 
-            public static string GetCubemapBakerDescription(string language)
+            public static string GetCubemapBakerDescription()
             {
                 return GetText
                 (
-                    language,
                     "Use this GameObject to bake a Cubemap for akanevrc_JewelShader.",
                     "このGameObjectは、茜式宝石シェーダー用キューブマップをベイクするために使用します。"
                 );
             }
 
-            public static string GetHiddenConfigFoldout(string language)
+            public static string GetHiddenConfigFoldout()
             {
-                return GetText(language, "Hidden configs", "非表示の設定");
+                return GetText("Hidden configs", "非表示の設定");
             }
 
-            public static string GetCameraPrefabLabel(string language)
+            public static string GetCameraPrefabLabel()
             {
-                return GetText(language, "Baker camera Prefab/GameObject", "ベイク用カメラのPrefab/GameObject");
+                return GetText("Baker camera Prefab/GameObject", "ベイク用カメラのPrefab/GameObject");
             }
 
-            public static string GetMeshPrefabLabel(string language)
+            public static string GetMeshPrefabLabel()
             {
-                return GetText(language, "Target mesh Prefab/GameObject", "処理対象のメッシュを含むPrefab/GameObject");
+                return GetText("Target mesh Prefab/GameObject", "処理対象のメッシュを含むPrefab/GameObject");
             }
 
-            public static string GetManualCentroidLabel(string language)
+            public static string GetManualCentroidLabel()
             {
-                return GetText(language, "Specify centroid manually", "中心座標を手動で指定");
+                return GetText("Specify centroid manually", "中心座標を手動で指定");
             }
 
-            public static string GetCentroidLabel(string language)
+            public static string GetCentroidLabel()
             {
-                return GetText(language, "Centroid position", "中心座標");
+                return GetText("Centroid position", "中心座標");
             }
 
-            public static string GetWidthLabel(string language)
+            public static string GetWidthLabel()
             {
-                return GetText(language, "Baked cubemap width", "ベイクされるキューブマップのサイズ");
+                return GetText("Baked cubemap width", "ベイクされるキューブマップのサイズ");
             }
 
-            public static string GetBakeButtonLabel(string language)
+            public static string GetBakeButtonLabel()
             {
-                return GetText(language, "Bake", "ベイク");
+                return GetText("Bake", "ベイク");
             }
 
-            public static string GetSaveCubemapPanelTitle(string language)
+            public static string GetSaveCubemapPanelTitle()
             {
-                return GetText(language, "Save cubemap texture", "キューブマップテクスチャの保存");
+                return GetText("Save cubemap texture", "キューブマップテクスチャの保存");
             }
 
-            public static string GetSaveCubemapPanelMessage(string language)
+            public static string GetSaveCubemapPanelMessage()
             {
-                return GetText(language, "Enter a name of new cubemap texture file.", "キューブマップテクスチャファイルの名前を入力");
+                return GetText("Enter a name of new cubemap texture file.", "キューブマップテクスチャファイルの名前を入力");
             }
 
-            public static string GetSaveMaterialPanelTitle(string language)
+            public static string GetSaveMaterialPanelTitle()
             {
-                return GetText(language, "Save material", "マテリアルの保存");
+                return GetText("Save material", "マテリアルの保存");
             }
 
-            public static string GetSaveMaterialPanelMessage(string language)
+            public static string GetSaveMaterialPanelMessage()
             {
-                return GetText(language, "Enter a name of new material file.", "マテリアルファイルの名前を入力");
+                return GetText("Enter a name of new material file.", "マテリアルファイルの名前を入力");
             }
 
-            public static string GetNullMessageOfCameraPrefab(string language)
+            public static string GetNullMessageOfCameraPrefab()
             {
-                return GetText(language, "Enter camera Prefab/GameObject", "カメラPrefab/GameObjectを指定してください");
+                return GetText("Enter camera Prefab/GameObject", "カメラPrefab/GameObjectを指定してください");
             }
 
-            public static string GetNullMessageOfMeshPrefab(string language)
+            public static string GetNullMessageOfMeshPrefab()
             {
-                return GetText(language, "Enter mesh Prefab/GameObject", "メッシュを含むPrefab/GameObjectを指定してください");
+                return GetText("Enter mesh Prefab/GameObject", "メッシュを含むPrefab/GameObjectを指定してください");
             }
 
-            public static string GetOutOfRangeMessageOfWidth(string language)
+            public static string GetOutOfRangeMessageOfWidth()
             {
-                return GetText(language, "Width must be 1 or above", "サイズは1以上にしてください");
+                return GetText("Width must be 1 or above", "サイズは1以上にしてください");
             }
 
-            public static string GetBakeCanceledLog(string language)
+            public static string GetBakeCanceledLog()
             {
-                return GetText(language, "Bake canceled", "ベイクがキャンセルされました");
+                return GetText("Bake canceled", "ベイクがキャンセルされました");
             }
 
-            public static string GetBakeSucceededLog(string language)
+            public static string GetBakeSucceededLog()
             {
-                return GetText(language, "Bake succeeded", "ベイクが完了しました");
+                return GetText("Bake succeeded", "ベイクが完了しました");
             }
         }
-
-        private static string language = "en";
 
         private SerializedProperty cameraPrefab;
         private SerializedProperty meshPrefab;
@@ -153,40 +152,40 @@ namespace akanevrc.JewelShader.Editor
             this.serializedObject.Update();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField(I18n.GetCubemapBakerTitle(CubemapBakerEditor.language), EditorStyles.boldLabel);
-            if (GUILayout.Button(I18n.GetLanguageButtonLabel(CubemapBakerEditor.language))) ToggleLanguage();
+            EditorGUILayout.LabelField(I18n.GetCubemapBakerTitle(), EditorStyles.boldLabel);
+            if (GUILayout.Button(I18n.GetLanguageButtonLabel())) ToggleLanguage();
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.Space();
 
-            EditorGUILayout.HelpBox(I18n.GetCubemapBakerDescription(CubemapBakerEditor.language), MessageType.Info);
+            EditorGUILayout.HelpBox(I18n.GetCubemapBakerDescription(), MessageType.Info);
             EditorGUILayout.Space();
 
-            EditorGUILayout.LabelField(I18n.GetMeshPrefabLabel(CubemapBakerEditor.language));
+            EditorGUILayout.LabelField(I18n.GetMeshPrefabLabel());
             EditorGUILayout.PropertyField(this.meshPrefab, new GUIContent());
             EditorGUILayout.Space();
 
-            EditorGUILayout.PropertyField(this.manualCentroid, new GUIContent(I18n.GetManualCentroidLabel(CubemapBakerEditor.language)));
+            EditorGUILayout.PropertyField(this.manualCentroid, new GUIContent(I18n.GetManualCentroidLabel()));
             EditorGUI.BeginDisabledGroup(!this.manualCentroid.boolValue);
-            EditorGUILayout.LabelField(I18n.GetCentroidLabel(CubemapBakerEditor.language));
+            EditorGUILayout.LabelField(I18n.GetCentroidLabel());
             EditorGUILayout.PropertyField(this.centroid, new GUIContent());
             EditorGUI.EndDisabledGroup();
             EditorGUILayout.Space();
 
-            EditorGUILayout.LabelField(I18n.GetWidthLabel(CubemapBakerEditor.language));
+            EditorGUILayout.LabelField(I18n.GetWidthLabel());
             EditorGUILayout.PropertyField(this.width, new GUIContent());
             EditorGUILayout.Space();
 
-            this.hiddenConfigFoldout = EditorGUILayout.Foldout(this.hiddenConfigFoldout, I18n.GetHiddenConfigFoldout(CubemapBakerEditor.language));
+            this.hiddenConfigFoldout = EditorGUILayout.Foldout(this.hiddenConfigFoldout, I18n.GetHiddenConfigFoldout());
             if (this.hiddenConfigFoldout)
             {
                 EditorGUI.indentLevel++;
-                EditorGUILayout.LabelField(I18n.GetCameraPrefabLabel(CubemapBakerEditor.language));
+                EditorGUILayout.LabelField(I18n.GetCameraPrefabLabel());
                 EditorGUILayout.PropertyField(this.cameraPrefab, new GUIContent());
                 EditorGUI.indentLevel--;
             }
             EditorGUILayout.Space();
 
-            if (GUILayout.Button(I18n.GetBakeButtonLabel(CubemapBakerEditor.language)))
+            if (GUILayout.Button(I18n.GetBakeButtonLabel()))
             {
                 if (Validate())
                 {
@@ -194,35 +193,35 @@ namespace akanevrc.JewelShader.Editor
 
                     var cubemapPath = EditorUtility.SaveFilePanelInProject
                     (
-                        I18n.GetSaveCubemapPanelTitle(CubemapBakerEditor.language),
+                        I18n.GetSaveCubemapPanelTitle(),
                         $"JewelShader_Cubemap_{meshObj?.name}.png",
                         "png",
-                        I18n.GetSaveCubemapPanelMessage(CubemapBakerEditor.language)
+                        I18n.GetSaveCubemapPanelMessage()
                     );
 
                     if (string.IsNullOrEmpty(cubemapPath))
                     {
-                        Debug.Log(I18n.GetBakeCanceledLog(CubemapBakerEditor.language));
+                        Debug.Log(I18n.GetBakeCanceledLog());
                     }
                     else
                     {
                         var materialPath = EditorUtility.SaveFilePanelInProject
                         (
-                            I18n.GetSaveMaterialPanelTitle(CubemapBakerEditor.language),
+                            I18n.GetSaveMaterialPanelTitle(),
                             $"JewelShader_Material_{meshObj?.name}.mat",
                             "mat",
-                            I18n.GetSaveMaterialPanelMessage(CubemapBakerEditor.language),
+                            I18n.GetSaveMaterialPanelMessage(),
                             Path.GetDirectoryName(cubemapPath)
                         );
 
                         if (string.IsNullOrEmpty(materialPath))
                         {
-                            Debug.Log(I18n.GetBakeCanceledLog(CubemapBakerEditor.language));
+                            Debug.Log(I18n.GetBakeCanceledLog());
                         }
                         else
                         {
                             baker.Bake(cubemapPath, materialPath);
-                            Debug.Log(I18n.GetBakeSucceededLog(CubemapBakerEditor.language));
+                            Debug.Log(I18n.GetBakeSucceededLog());
                         }
                     }
                 }
@@ -238,13 +237,13 @@ namespace akanevrc.JewelShader.Editor
 
         private void ToggleLanguage()
         {
-            if (CubemapBakerEditor.language == "en")
+            if (I18n.language == "en")
             {
-                CubemapBakerEditor.language = "ja";
+                I18n.language = "ja";
             }
             else
             {
-                CubemapBakerEditor.language = "en";
+                I18n.language = "en";
             }
         }
 
@@ -256,17 +255,17 @@ namespace akanevrc.JewelShader.Editor
 
             if (cameraObj == null)
             {
-                this.errorMessage = I18n.GetNullMessageOfCameraPrefab(CubemapBakerEditor.language);
+                this.errorMessage = I18n.GetNullMessageOfCameraPrefab();
                 return false;
             }
             else if (meshObj == null)
             {
-                this.errorMessage = I18n.GetNullMessageOfMeshPrefab(CubemapBakerEditor.language);
+                this.errorMessage = I18n.GetNullMessageOfMeshPrefab();
                 return false;
             }
             else if (widthVal <= 0)
             {
-                this.errorMessage = I18n.GetOutOfRangeMessageOfWidth(CubemapBakerEditor.language);
+                this.errorMessage = I18n.GetOutOfRangeMessageOfWidth();
                 return false;
             }
 

@@ -14,9 +14,11 @@ namespace akanevrc.JewelShader.Editor
 
         private class I18n
         {
-            private static string GetText(string language, string enText, string jaText)
+            public static string language = "en";
+
+            private static string GetText(string enText, string jaText)
             {
-                switch (language)
+                switch (I18n.language)
                 {
                     case "en":
                         return enText;
@@ -27,103 +29,102 @@ namespace akanevrc.JewelShader.Editor
                 }
             }
 
-            public static string GetLanguageButtonLabel(string language)
+            public static string GetLanguageButtonLabel()
             {
-                return GetText(language, "日本語", "English");
+                return GetText("日本語", "English");
             }
 
-            public static string GetJewelShaderTitle(string language)
+            public static string GetJewelShaderTitle()
             {
-                return GetText(language, "akanevrc_JewelShader", "茜式宝石シェーダー (akanevrc_JewelShader)");
+                return GetText("akanevrc_JewelShader", "茜式宝石シェーダー (akanevrc_JewelShader)");
             }
 
-            public static string GetNormalCubeLabel(string language)
+            public static string GetNormalCubeLabel()
             {
-                return GetText(language, "Normal Cubemap", "法線キューブマップ");
+                return GetText("Normal Cubemap", "法線キューブマップ");
             }
 
-            public static string GetCentroidLabel(string language)
+            public static string GetCentroidLabel()
             {
-                return GetText(language, "Centroid Position", "中心座標");
+                return GetText("Centroid Position", "中心座標");
             }
 
-            public static string GetRefractiveLabel(string language)
+            public static string GetRefractiveLabel()
             {
-                return GetText(language, "Refractive Index", "屈折率");
+                return GetText("Refractive Index", "屈折率");
             }
 
-            public static string GetLightFoldoutLabel(string language, int index)
+            public static string GetLightFoldoutLabel(int index)
             {
-                return GetText(language, $"Light Source {index + 1}", $"光源 {index + 1}");
+                return GetText($"Light Source {index + 1}", $"光源 {index + 1}");
             }
 
-            public static string GetLightDirLabel(string language)
+            public static string GetLightDirLabel()
             {
-                return GetText(language, "Direction", "向き");
+                return GetText("Direction", "向き");
             }
 
-            public static string GetLightPowerLabel(string language)
+            public static string GetLightPowerLabel()
             {
-                return GetText(language, "Power Value", "累乗値");
+                return GetText("Power Value", "累乗値");
             }
 
-            public static string GetLightReflectionLabel(string language)
+            public static string GetLightReflectionLabel()
             {
-                return GetText(language, "Reflection Ratio", "反射率");
+                return GetText("Reflection Ratio", "反射率");
             }
 
-            public static string GetLightIntensityLabel(string language)
+            public static string GetLightIntensityLabel()
             {
-                return GetText(language, "Color (Intensity)", "色（強さ）");
+                return GetText("Color (Intensity)", "色（強さ）");
             }
 
-            public static string GetLightMultiFactorLabel(string language)
+            public static string GetLightMultiFactorLabel()
             {
-                return GetText(language, "Multiplication Factor", "乗算係数");
+                return GetText("Multiplication Factor", "乗算係数");
             }
 
-            public static string GetLightWeightLabel(string language)
+            public static string GetLightWeightLabel()
             {
-                return GetText(language, "Weight Factor", "重み係数");
+                return GetText("Weight Factor", "重み係数");
             }
 
-            public static string GetColorAttenuationRLabel(string language)
+            public static string GetColorAttenuationRLabel()
             {
-                return GetText(language, "Color Attenuation R", "赤の減衰");
+                return GetText("Color Attenuation R", "赤の減衰");
             }
 
-            public static string GetColorAttenuationGLabel(string language)
+            public static string GetColorAttenuationGLabel()
             {
-                return GetText(language, "Color Attenuation G", "緑の減衰");
+                return GetText("Color Attenuation G", "緑の減衰");
             }
 
-            public static string GetColorAttenuationBLabel(string language)
+            public static string GetColorAttenuationBLabel()
             {
-                return GetText(language, "Color Attenuation B", "青の減衰");
+                return GetText("Color Attenuation B", "青の減衰");
             }
 
-            public static string GetSpectroscopyLabel(string language)
+            public static string GetSpectroscopyLabel()
             {
-                return GetText(language, "Spectorscopy", "分光");
+                return GetText("Spectorscopy", "分光");
             }
 
-            public static string GetSpectrumRefractiveRLabel(string language)
+            public static string GetSpectrumRefractiveRLabel()
             {
-                return GetText(language, "Spectrum Refractive Ratio R", "赤の屈折比率");
+                return GetText("Spectrum Refractive Ratio R", "赤の屈折比率");
             }
 
-            public static string GetSpectrumRefractiveGLabel(string language)
+            public static string GetSpectrumRefractiveGLabel()
             {
-                return GetText(language, "Spectrum Refractive Ratio G", "緑の屈折比率");
+                return GetText("Spectrum Refractive Ratio G", "緑の屈折比率");
             }
 
-            public static string GetSpectrumRefractiveBLabel(string language)
+            public static string GetSpectrumRefractiveBLabel()
             {
-                return GetText(language, "Spectrum Refractive Ratio B", "青の屈折比率");
+                return GetText("Spectrum Refractive Ratio B", "青の屈折比率");
             }
         }
 
-        private static string language = "en";
         private static bool[] lightFoldouts = new bool[] { false, false, false, false };
 
         private MaterialProperty _NormalCube;
@@ -212,18 +213,18 @@ namespace akanevrc.JewelShader.Editor
             FindProperties(props);
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField(I18n.GetJewelShaderTitle(JewelShaderGUI.language), EditorStyles.boldLabel);
-            if (GUILayout.Button(I18n.GetLanguageButtonLabel(JewelShaderGUI.language))) ToggleLanguage();
+            EditorGUILayout.LabelField(I18n.GetJewelShaderTitle(), EditorStyles.boldLabel);
+            if (GUILayout.Button(I18n.GetLanguageButtonLabel())) ToggleLanguage();
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.Space();
 
             EditorGUI.BeginChangeCheck();
 
-            materialEditor.TextureProperty(_NormalCube, I18n.GetNormalCubeLabel(JewelShaderGUI.language));
-            materialEditor.VectorProperty (_Centroid  , I18n.GetCentroidLabel  (JewelShaderGUI.language));
+            materialEditor.TextureProperty(_NormalCube, I18n.GetNormalCubeLabel());
+            materialEditor.VectorProperty (_Centroid  , I18n.GetCentroidLabel  ());
             EditorGUILayout.Space();
 
-            materialEditor.RangeProperty(_Refractive, I18n.GetRefractiveLabel(JewelShaderGUI.language));
+            materialEditor.RangeProperty(_Refractive, I18n.GetRefractiveLabel());
             EditorGUILayout.Space();
 
             for (var i = 0; i < _LightDirs.Length; i++)
@@ -232,20 +233,20 @@ namespace akanevrc.JewelShader.Editor
                 EditorGUILayout.Space();
             }
 
-            materialEditor.RangeProperty(_ColorAttenuationR, I18n.GetColorAttenuationRLabel(JewelShaderGUI.language));
-            materialEditor.RangeProperty(_ColorAttenuationG, I18n.GetColorAttenuationGLabel(JewelShaderGUI.language));
-            materialEditor.RangeProperty(_ColorAttenuationB, I18n.GetColorAttenuationBLabel(JewelShaderGUI.language));
+            materialEditor.RangeProperty(_ColorAttenuationR, I18n.GetColorAttenuationRLabel());
+            materialEditor.RangeProperty(_ColorAttenuationG, I18n.GetColorAttenuationGLabel());
+            materialEditor.RangeProperty(_ColorAttenuationB, I18n.GetColorAttenuationBLabel());
             EditorGUILayout.Space();
 
             var oldSpectroscopy = (SpectroscopyKeyword)Mathf.RoundToInt(_Spectroscopy.floatValue);
-            var newSpectroscopy = (SpectroscopyKeyword)EditorGUILayout.EnumPopup(I18n.GetSpectroscopyLabel(JewelShaderGUI.language), oldSpectroscopy);
+            var newSpectroscopy = (SpectroscopyKeyword)EditorGUILayout.EnumPopup(I18n.GetSpectroscopyLabel(), oldSpectroscopy);
             _Spectroscopy.floatValue = (float)newSpectroscopy;
             if (newSpectroscopy != oldSpectroscopy) SetKeyword(material, newSpectroscopy);
             EditorGUILayout.Space();
 
-            materialEditor.RangeProperty(_SpectrumRefractiveR, I18n.GetSpectrumRefractiveRLabel(JewelShaderGUI.language));
-            materialEditor.RangeProperty(_SpectrumRefractiveG, I18n.GetSpectrumRefractiveGLabel(JewelShaderGUI.language));
-            materialEditor.RangeProperty(_SpectrumRefractiveB, I18n.GetSpectrumRefractiveBLabel(JewelShaderGUI.language));
+            materialEditor.RangeProperty(_SpectrumRefractiveR, I18n.GetSpectrumRefractiveRLabel());
+            materialEditor.RangeProperty(_SpectrumRefractiveG, I18n.GetSpectrumRefractiveGLabel());
+            materialEditor.RangeProperty(_SpectrumRefractiveB, I18n.GetSpectrumRefractiveBLabel());
 
             if (EditorGUI.EndChangeCheck())
             {
@@ -256,29 +257,29 @@ namespace akanevrc.JewelShader.Editor
         private void LightPropertyes(MaterialEditor materialEditor, int index)
         {
             JewelShaderGUI.lightFoldouts[index] =
-                EditorGUILayout.Foldout(JewelShaderGUI.lightFoldouts[index], I18n.GetLightFoldoutLabel(JewelShaderGUI.language, index));
+                EditorGUILayout.Foldout(JewelShaderGUI.lightFoldouts[index], I18n.GetLightFoldoutLabel(index));
             if (JewelShaderGUI.lightFoldouts[index])
             {
                 EditorGUI.indentLevel++;
-                materialEditor.VectorProperty(_LightDirs        [index], I18n.GetLightDirLabel        (JewelShaderGUI.language));
-                materialEditor.RangeProperty (_LightPowers      [index], I18n.GetLightPowerLabel      (JewelShaderGUI.language));
-                materialEditor.RangeProperty (_LightReflections [index], I18n.GetLightReflectionLabel (JewelShaderGUI.language));
-                materialEditor.ColorProperty (_LightIntensitys  [index], I18n.GetLightIntensityLabel  (JewelShaderGUI.language));
-                materialEditor.RangeProperty (_LightMultiFactors[index], I18n.GetLightMultiFactorLabel(JewelShaderGUI.language));
-                materialEditor.RangeProperty (_LightWeights     [index], I18n.GetLightWeightLabel     (JewelShaderGUI.language));
+                materialEditor.VectorProperty(_LightDirs        [index], I18n.GetLightDirLabel        ());
+                materialEditor.RangeProperty (_LightPowers      [index], I18n.GetLightPowerLabel      ());
+                materialEditor.RangeProperty (_LightReflections [index], I18n.GetLightReflectionLabel ());
+                materialEditor.ColorProperty (_LightIntensitys  [index], I18n.GetLightIntensityLabel  ());
+                materialEditor.RangeProperty (_LightMultiFactors[index], I18n.GetLightMultiFactorLabel());
+                materialEditor.RangeProperty (_LightWeights     [index], I18n.GetLightWeightLabel     ());
                 EditorGUI.indentLevel--;
             }
         }
 
         private void ToggleLanguage()
         {
-            if (JewelShaderGUI.language == "en")
+            if (I18n.language == "en")
             {
-                JewelShaderGUI.language = "ja";
+                I18n.language = "ja";
             }
             else
             {
-                JewelShaderGUI.language = "en";
+                I18n.language = "en";
             }
         }
 
