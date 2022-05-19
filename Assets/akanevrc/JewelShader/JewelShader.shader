@@ -9,7 +9,7 @@ Shader "akanevrc_JewelShader/Jewel"
         _LightDir_1            ("Light 1 Direction"            , Vector          ) = (0, 1, 0, 1)
         _LightPower_1          ("Light 1 Power"                , Range(0.01, 100)) = 10
         _LightReflection_1     ("Light 1 Reflection"           , Range(0, 1)     ) = 0.01
-        [HDR] _LightIntensity_1("Light 1 Color"                , Color           ) = (80, 80, 80, 1)
+        [HDR] _LightIntensity_1("Light 1 Color"                , Color           ) = (20, 20, 20, 1)
         _LightMultiFactor_1    ("Light 1 Multiplication Factor", Range(0, 1)     ) = 0.8
         _LightWeight_1         ("Light 1 Weight"               , Range(-1, 1)    ) = 1
 
