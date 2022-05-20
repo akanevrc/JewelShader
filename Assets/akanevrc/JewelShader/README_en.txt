@@ -159,6 +159,9 @@ Spectroscopy is expressed by appropriately distributing this values.
 
 
 [ Change Log ]
+1.1.1 (2022/05/20)
+Fix a bug about saving material when baking.
+
 1.1.0 (2022/05/20)
 Add light source functionality and count.
 Change shader property default values.
