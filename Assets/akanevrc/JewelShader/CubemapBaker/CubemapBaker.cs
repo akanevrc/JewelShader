@@ -39,8 +39,9 @@ namespace akanevrc.JewelShader
                 var mesh     = renderer is MeshRenderer ? meshObj.GetComponent<MeshFilter>().sharedMesh : renderer is SkinnedMeshRenderer smr ? smr.sharedMesh : null;
                 var camera   = cameraObj.GetComponent<Camera>();
 
-                if (!this.manualCentroid) this.centroid = GetCentroid(mesh);
-                InitCamera(camera, renderer, this.centroid);
+                var c = this.centroid;
+                if (!this.manualCentroid) c = GetCentroid(mesh);
+                InitCamera(camera, renderer, c);
 
                 var bakerMaterial = new Material(Shader.Find(CubemapBaker.bakerShaderName));
                 destroyables.Push(bakerMaterial);
@@ -53,7 +54,7 @@ namespace akanevrc.JewelShader
                 Render(renderer, camera, bakerMaterial, cubemap);
                 SaveTexture(cubemap, cubemapPath);
                 SaveImporter(cubemapPath);
-                SaveMaterial(materialPath, cubemapPath, this.centroid);
+                SaveMaterial(materialPath, cubemapPath, c);
                 AssetDatabase.SaveAssets();
                 AssetDatabase.Refresh();
             }
@@ -124,7 +125,7 @@ namespace akanevrc.JewelShader
 
             camera.RenderToCubemap(cubemap);
 
-            renderer.sharedMaterial     = oldMaterial;
+            renderer.sharedMaterial = oldMaterial;
         }
 
         private void SaveTexture(Cubemap cubemap, string filePath)
@@ -216,12 +217,21 @@ namespace akanevrc.JewelShader
 
         private void SaveMaterial(string materialPath, string cubemapPath, Vector3 centroid)
         {
-            var material = new Material(Shader.Find(CubemapBaker.jewelShaderName));
+            var material = AssetDatabase.LoadAssetAtPath<Material>(materialPath);
+            if (material == null)
+            {
+                material = new Material(Shader.Find(CubemapBaker.jewelShaderName));
+                AssetDatabase.CreateAsset(material, materialPath);
+            }
+            else
+            {
+                var tmp = new Material(Shader.Find(CubemapBaker.jewelShaderName));
+                material.CopyPropertiesFromMaterial(tmp);
+                DestroyImmediate(tmp);
+            }
             var cubemap  = AssetDatabase.LoadAssetAtPath<Texture>(cubemapPath);
             material.SetTexture("_NormalCube", cubemap);
             material.SetVector ("_Centroid"  , new Vector4(centroid.x, centroid.y, centroid.z, 1.0F));
-            AssetDatabase.CreateAsset(material, materialPath);
-            AssetDatabase.Refresh();
         }
 #endif
     }
