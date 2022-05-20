@@ -54,6 +54,8 @@ namespace akanevrc.JewelShader
                 SaveTexture(cubemap, cubemapPath);
                 SaveImporter(cubemapPath);
                 SaveMaterial(materialPath, cubemapPath, this.centroid);
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
             }
             finally
             {
@@ -219,6 +221,7 @@ namespace akanevrc.JewelShader
             material.SetTexture("_NormalCube", cubemap);
             material.SetVector ("_Centroid"  , new Vector4(centroid.x, centroid.y, centroid.z, 1.0F));
             AssetDatabase.CreateAsset(material, materialPath);
+            AssetDatabase.Refresh();
         }
 #endif
     }
