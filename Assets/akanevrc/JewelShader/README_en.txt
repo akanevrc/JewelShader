@@ -109,21 +109,35 @@ This item is automatically set by CubemapBaker when baking.
 Specify refractive index of the object.
 As a guide, 1.3 is ice, 1.5 is glass, 1.7 is sapphire, and 2.4 is diamond.
 
-「Light Direction」（光源の向き）
-Specify the direction of auxiliary light source (directional light).
+「Light Source 1 - 4」（光源 1～4）
+Auxiliary light source (directional light).
+You can click the arrow to expand it and set the following parameters.
 
-「Light Power Value」（光源の累乗値）
-Specify the power value for light source.
-The smaller it is, the wider the range.
+    「Direction」（向き）
+    Specify the direction of the light source.
 
-「Light Reflection Ratio」（光源の反射率）
-Specifies the reflectance at which the light from the light source
-reflects off the surface of the object.
+    「Power Value」（累乗値）
+    Specify the power value for light source.
+    The smaller it is, the wider the range.
 
-「Light Color (Intensity)」（光源の色（強さ））
-Specify the intensity of light source.
-This is HDR color.
-Note that this light source is bright in the bright place and dark in the dark place.
+    「Reflection Ratio」（反射率）
+    Specifies the reflectance at which the light from the light source
+    reflects off the surface of the object.
+
+    「Color (Intensity)」（色（強さ））
+    Specify the intensity of light source.
+    This is HDR color.
+
+    「Multiplication Factor」（乗算係数）
+    A coefficient that determines whether the effect of a light source is additive or productive.
+    This value is larger, light source is bright in the bright place and dark in the dark place.
+    This value is smaller, light source is bright in both the bright place and the dark place.
+
+    「Weight Factor」（重み係数）
+    A coefficient that multiplies the brightness of the light source.
+    If 1, ther light will be bright.
+    If 0, the light source is disabled.
+    If -1, the illuminated position will be darkened.
 
 「Color Attenuation R」（赤の減衰）
 「Color Attenuation G」（緑の減衰）
@@ -145,6 +159,10 @@ Spectroscopy is expressed by appropriately distributing this values.
 
 
 [ Change Log ]
+1.1.0 (2022/05/20)
+Add light source functionality and count.
+Change shader property default values.
+
 1.0.0 (2022/05/16)
 Implement basic functionality
 
