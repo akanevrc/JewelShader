@@ -159,6 +159,9 @@ Spectroscopy is expressed by appropriately distributing this values.
 
 
 [ Change Log ]
+1.1.3 (2022/05/24)
+Fix a defect in the Small License.
+
 1.1.2 (2022/05/24)
 Fix a defect in the Regular License.
 
