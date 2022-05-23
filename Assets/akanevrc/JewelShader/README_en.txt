@@ -159,6 +159,9 @@ Spectroscopy is expressed by appropriately distributing this values.
 
 
 [ Change Log ]
+1.1.2 (2022/05/24)
+Fix a defect in the Regular License.
+
 1.1.1 (2022/05/20)
 Fix a bug about saving material when baking.
 
