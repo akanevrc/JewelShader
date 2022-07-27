@@ -29,10 +29,9 @@ Unity 2019.4.31f1
 Windows版 VRChat
 （Oculus/Meta Quest版は非対応です！ ご注意ください！）
 
-【利用規約】
-同梱の「TermsOfUse_○○License_ja.pdf」または「TermsOfUse_○○License_en.pdf」を参照してください。
-本製品の購入または使用により、本規約に同意したものとみなします。
-ライセンスに関する簡易的な説明は、「README_about_licenses_ja.txt」または「README_about_licenses_en.txt」を参照してください。
+【ライセンス】
+CC0
+https://creativecommons.org/share-your-work/public-domain/cc0/
 
 
 【概要】
@@ -158,6 +157,9 @@ RGBを指定するとプリズムのように分光します。
 
 
 【更新履歴】
+1.1.4 (2022/07/27)
+ライセンスをCC0に変更しました。
+
 1.1.3 (2022/05/24)
 縮小ライセンスの不備を修正しました。
 

@@ -29,10 +29,9 @@ Unity 2019.4.31f1
 VRChat Windows Edition
 (Not for Oculus/Meta Quest Edition! Please be careful!)
 
-[ Terms of Use ]
-See the included "TermsOfUse_○○License_en.pdf" or "TermsOfUse_○○License_ja.pdf".
-By purchasing or use this product, you are deemed to have agreed to these terms.
-See also included "README_about_licenses_en.txt" or "README_about_licenses_ja.txt" for a brief license description.
+[ License ]
+CC0
+https://creativecommons.org/share-your-work/public-domain/cc0/
 
 
 [ Abstraction ]
@@ -159,6 +158,9 @@ Spectroscopy is expressed by appropriately distributing this values.
 
 
 [ Change Log ]
+1.1.4 (2022/07/27)
+Change the license to CC0.
+
 1.1.3 (2022/05/24)
 Fix a defect in the Small License.
 
