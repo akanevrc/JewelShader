@@ -158,6 +158,9 @@ Spectroscopy is expressed by appropriately distributing this values.
 
 
 [ Change Log ]
+1.1.5 (2022/12/20)
+Fix to disable warning on CubemapBaker.
+
 1.1.4 (2022/07/27)
 Change the license to CC0.
 
