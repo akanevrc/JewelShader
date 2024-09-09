@@ -73,11 +73,11 @@ Shader "akanevrc_JewelShader/Jewel"
             struct v2f
             {
                 float4 vertex   : SV_POSITION;
-                float3 normal   : NORMAL;
-                float3 worldPos : TEXCOORD0;
-                float3 viewDir  : TEXCOORD1;
-                float3 center   : TEXCOORD2;
-                UNITY_FOG_COORDS(1)
+                float3 normal   : TEXCOORD0;
+                float3 worldPos : TEXCOORD1;
+                float3 viewDir  : TEXCOORD2;
+                float3 center   : TEXCOORD3;
+                UNITY_FOG_COORDS(4)
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
