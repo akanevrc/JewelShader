@@ -36,7 +36,7 @@ https://creativecommons.org/share-your-work/public-domain/cc0/
 
 [ Abstraction ]
 akanevrc_JewelShader is a shader that reproduces the refraction and reflection of transparent substances.
-This shader is very fast because draw in 1 pass without using rays by baking normal data to a cubemap.
+This shader is very fast because draw in 1 pass without using ray marching by baking normal data to a cubemap.
 Both hard edge and soft edge supported.
 The color of the object can be specified.
 It is possible to reproduce a prism-like spectrum.
