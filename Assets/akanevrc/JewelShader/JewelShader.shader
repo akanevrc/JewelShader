@@ -55,13 +55,19 @@ Shader "akanevrc_JewelShader/Jewel"
 
         Pass
         {
+            Name "FowardBase"
+            Tags {
+                "LightMode"="ForwardBase"
+            }
+            Cull Back
+
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #include "UnityCG.cginc"
             #pragma multi_compile_fog
             #pragma multi_compile _SPECTROSCOPY_NONE _SPECTROSCOPY_RGB
-
-            #include "UnityCG.cginc"
+            #pragma target 2.0
 
             struct appdata
             {
@@ -118,9 +124,9 @@ Shader "akanevrc_JewelShader/Jewel"
 
             v2f vert(appdata v)
             {
-                v2f o;
+                v2f o = (v2f)0;
                 UNITY_SETUP_INSTANCE_ID(v);
-                UNITY_INITIALIZE_OUTPUT(v2f, o);
+                UNITY_TRANSFER_INSTANCE_ID(v, o);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
                 o.vertex   = UnityObjectToClipPos(v.vertex);
                 o.normal   = UnityObjectToWorldNormal(v.normal);
