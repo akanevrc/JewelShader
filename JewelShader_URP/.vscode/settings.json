@@ -2,5 +2,5 @@
     "files.exclude": {
         "**/*.meta": true
     },
-    "dotnet.defaultSolution": "JewelShader.sln"
+    "dotnet.defaultSolution": "JewelShader_URP.sln"
 }
